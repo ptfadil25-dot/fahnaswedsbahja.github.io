@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Wedding Invitation of Fahnas & Bahja</title>
+    <style>
+        /* Importing Option 2 Font Styles: Cinzel and Lora */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+        :root {
+            --primary-dark: #1E3322; /* Royal Islamic Emerald Green */
+            --accent-gold: #C5A059;  /* Elegant Metallic Gold Accent */
+            --bg-cream: #FAF6F0;     /* Soft Premium Ivory Cream */
+            --card-ivory: #FFFFFF;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Lora', 'Playfair Display', serif;
+            background-color: var(--bg-cream);
+            color: var(--primary-dark);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 20px;
+            background: linear-gradient(rgba(250, 246, 240, 0.88), rgba(250, 246, 240, 0.92)), 
+                        url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&w=1000&q=80') no-repeat center center/cover;
+            border: 12px solid var(--primary-dark);
+            position: relative;
+        }
+
+        .invitation-card {
+            background: var(--card-ivory);
+            padding: 40px 25px;
+            box-shadow: 0 20px 50px rgba(30, 51, 34, 0.12);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            max-width: 450px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+            border-radius: 4px;
+        }
+
+        .invitation-card::before {
+            content: "";
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            pointer-events: none;
+        }
+
+        .bismillah {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .blessing-text { 
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem; 
+            letter-spacing: 3px; 
+            text-transform: uppercase;
+            margin: 0 0 25px 0; 
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .sub-invite {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1.5px; 
+            text-transform: uppercase; 
+            font-size: 0.7rem; 
+            color: #55665A;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        h1 { 
+            font-family: 'Cinzel', serif;
+            font-size: 3.2rem; 
+            margin: 0; 
+            font-weight: 500; 
+            letter-spacing: 3px;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+        }
+
+        .and-sign {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            display: block;
+            margin: 5px 0;
+            text-transform: lowercase;
+            font-style: italic;
+        }
+
+        .date-container {
+            font-family: 'Cinzel', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .date-side {
+            font-size: 0.8rem;
+            color: #7A8E83;
+        }
+
+        .date-main {
+            font-size: 2.4rem;
+            font-weight: 600;
+            border-left: 1px solid #D6C7BD;
+            border-right: 1px solid #D6C7BD;
+            padding: 0 20px;
+            color: var(--accent-gold);
+        }
+
+        .time-block {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .btn {
+            font-family: 'Cinzel', serif;
+            background-color: var(--primary-dark);
+            color: #FAF6F0;
+            padding: 14px 35px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            border: 1px solid var(--primary-dark);
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn:hover { 
+            background-color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+
+        .location-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30, 51, 34, 0.96); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .location-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .venue-card {
+            background: var(--card-ivory);
+            padding: 45px 30px;
+            border: 1px solid var(--accent-gold);
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+
+        .location-overlay.active .venue-card {
+            transform: scale(1);
+        }
+
+        .venue-card::before {
+            content: "";
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            pointer-events: none;
+        }
+
+        .badge {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .venue-card h3 {
+            font-family: 'Cinzel', serif;
+            margin: 0 0 20px 0;
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--primary-dark);
+        }
+
+        .details-text {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin: 6px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .note {
+            font-size: 0.95rem;
+            color: #55665A;
+            margin: 25px 0;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .maps-link {
+            font-family: 'Cinzel', serif;
+            display: inline-block;
+            background-color: var(--primary-dark);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 12px 28px;
+            border: 1px solid var(--primary-dark);
+            transition: all 0.2s ease;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .maps-link:hover {
+            background-color: var(--accent-gold);
+            color: var(--primary-dark);
+            border-color: var(--accent-gold);
+        }
+
+        .close-btn {
+            font-family: 'Cinzel', serif;
+            background: transparent;
+            border: none;
+            color: #7A8E83;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            font-weight: 600;
+        }
+        
+        .close-btn:hover {
+            color: #C5A059;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="invitation-card">
+            <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+            <p class="blessing-text">In the name of Allah, the Most Beneficent, the Most Merciful</p>
+            
+            <p class="sub-invite">We, along with our families, warmly invite you to share in our joy as we celebrate the Nikah ceremony of</p>
+            
+            <h1>Fahnas</h1>
+            <span class="and-sign">and</span>
+            <h1 style="margin-bottom: 10px;">Bahja</h1>
+            
+            <p style="font-style: italic; font-size: 0.95rem; color: #55665A; margin-top: 20px;">
+                Please join us on this blessed occasion to shower your valuable presence and Duas upon us.
+            </p>
+
+            <div class="date-container">
+                <div class="date-side">August</div>
+                <div class="date-main">2</div>
+                <div class="date-side">Sunday</div>
+            </div>
+            
+            <div class="time-block">
+                2026 &nbsp;|&nbsp; 11:00 AM – 3:00 PM
+            </div>
+
+            <button class="btn" onclick="toggleLocation(true)">View Venue &amp; Route</button>
+        </div>
+    </div>
+
+    <!-- LOCATION OVERLAY PAGE -->
+    <div class="location-overlay" id="locationPage">
+        <div class="venue-card">
+            <span class="badge">The Venue Location</span>
+            <h3>Emerald Palace</h3>
+            
+            <p class="details-text">Kurukkol Kunnu, Vailathur, Tirur</p>
+            <p class="details-text"><strong>Feast Timings:</strong> 11:00 AM to 3:00 PM</p>
+            
+            <p class="note">"May Allah bless you, and surround you with blessings, and bring you both together in total goodness and harmony."</p>
+            
+            <a class="maps-link" href="https://maps.app.goo.gl/TxEy1E2fggaFLNVaA" target="_blank">📍 Open in Google Maps</a>
+            
+            <button class="close-btn" onclick="toggleLocation(false)">✕ Return to Invitation</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleLocation(show) {
+            const overlay = document.getElementById('locationPage');
+            if (show) {
+                overlay.classList.add('active');
+            } else {
+                overlay.classList.remove('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
